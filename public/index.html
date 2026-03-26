@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="auth-container" class="auth-container">
+    <div class="auth-card">
+      <h1>Task Manager</h1>
+      <p class="auth-subtitle">Stay organized and productive</p>
+      
+      <div class="auth-tabs">
+        <button class="tab-btn active" data-tab="login">Login</button>
+        <button class="tab-btn" data-tab="register">Register</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form active-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <p class="form-message" id="login-message"></p>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" class="auth-form">
+        <div class="form-group">
+          <label for="register-username">Username</label>
+          <input type="text" id="register-username" placeholder="Choose a username" required>
+        </div>
+        <div class="form-group">
+          <label for="register-email">Email</label>
+          <input type="email" id="register-email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password" placeholder="Min 6 characters" required>
+        </div>
+        <div class="form-group">
+          <label for="register-confirm">Confirm Password</label>
+          <input type="password" id="register-confirm" placeholder="Confirm password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+        <p class="form-message" id="register-message"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main App Container -->
+  <div id="app-container" class="app-container" style="display: none;">
+    <nav class="navbar">
+      <div class="navbar-content">
+        <h1 class="navbar-title">📋 Task Manager</h1>
+        <div class="navbar-end">
+          <span id="user-display" class="user-display"></span>
+          <button id="logout-btn" class="btn btn-secondary">Logout</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="container">
+        <div class="add-task-section">
+          <h2>Add New Task</h2>
+          <form id="add-task-form" class="task-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="task-title">Task Title</label>
+                <input type="text" id="task-title" placeholder="Enter task title" required>
+              </div>
+              <div class="form-group">
+                <label for="task-priority">Priority</label>
+                <select id="task-priority">
+                  <option value="low">Low</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="task-description">Description</label>
+                <textarea id="task-description" placeholder="Task description (optional)" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="task-duedate">Due Date</label>
+                <input type="date" id="task-duedate">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Task</button>
+            <p class="form-message" id="add-task-message"></p>
+          </form>
+        </div>
+
+        <div class="tasks-section">
+          <div class="tasks-header">
+            <h2>My Tasks</h2>
+            <div class="filter-buttons">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="pending">Pending</button>
+              <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+          </div>
+
+          <div id="tasks-list" class="tasks-list">
+            <div class="empty-state">
+              <p>No tasks yet. Create one to get started! 🚀</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Edit Task Modal -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Task</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form id="edit-task-form" class="task-form">
+        <div class="form-group">
+          <label for="edit-task-title">Task Title</label>
+          <input type="text" id="edit-task-title" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edit-task-description">Description</label>
+            <textarea id="edit-task-description" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="edit-task-priority">Priority</label>
+            <select id="edit-task-priority">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="edit-task-duedate">Due Date</label>
+          <input type="date" id="edit-task-duedate">
+        </div>
+        <div class="modal-buttons">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
